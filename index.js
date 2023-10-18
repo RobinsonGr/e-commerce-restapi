@@ -22,7 +22,7 @@ const connectToDatabase = async () => {
   }
 };
 
-connectToDatabase(); // Call the function to establish the database connection
+connectToDatabase()
 
 app.listen(8000, () => {
   console.log('Listening now!');
