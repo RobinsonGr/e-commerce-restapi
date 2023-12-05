@@ -1,0 +1,30 @@
+{
+    "name": "Kafka Consumer",
+    "fileTypes": [
+        ".consumer"
+    ],
+    "scopeName": "source.dbclient-kafka.consumer",
+    "patterns": [
+        {
+            "include": "#dbclient-kafka-consumer.headerdefinitionline"
+        },
+        {
+            "include": "source.json"
+        }
+    ],
+    "repository": {
+        "dbclient-kafka-consumer.headerdefinitionline": {
+            "patterns": [
+                {
+                    "name": "meta.header.dbclient-kafka.consumer",
+                    "match": "(?i)(^|,\\s*)(?:(Consumer Info|Log)(:)\\s*)",
+                    "captures": {
+                        "2": {
+                            "name": "keyword.other.dbclient-kafka-consumer"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,15 @@
+{
+    "external": [
+        "node:*",
+        "supports-color",
+        "vscode",
+        "pg-native",
+        "aws4",
+        "aws-crt",
+        "officegen",
+        "neo4j-driver",
+        "@database-client/dmdb",
+        "mongodb",
+        "iconv-lite"
+    ]
+}

@@ -1,0 +1,56 @@
+0 verbose cli /home/robin/.nvm/versions/node/v21.0.0/bin/node /home/robin/.nvm/versions/node/v21.0.0/bin/npm
+1 info using npm@10.2.0
+2 info using node@v21.0.0
+3 timing npm:load:whichnode Completed in 1ms
+4 timing config:load:defaults Completed in 1ms
+5 timing config:load:file:/home/robin/.nvm/versions/node/v21.0.0/lib/node_modules/npm/npmrc Completed in 1ms
+6 timing config:load:builtin Completed in 1ms
+7 timing config:load:cli Completed in 2ms
+8 timing config:load:env Completed in 0ms
+9 timing config:load:file:/home/robin/E-commerce-rest-API/.npmrc Completed in 0ms
+10 timing config:load:project Completed in 3ms
+11 timing config:load:file:/home/robin/.npmrc Completed in 1ms
+12 timing config:load:user Completed in 1ms
+13 timing config:load:file:/home/robin/.nvm/versions/node/v21.0.0/etc/npmrc Completed in 0ms
+14 timing config:load:global Completed in 0ms
+15 timing config:load:setEnvs Completed in 1ms
+16 timing config:load Completed in 9ms
+17 timing npm:load:configload Completed in 10ms
+18 timing config:load:flatten Completed in 2ms
+19 timing npm:load:mkdirpcache Completed in 1ms
+20 timing npm:load:mkdirplogs Completed in 0ms
+21 verbose title npm init
+22 verbose argv "init" "--yes"
+23 timing npm:load:setTitle Completed in 0ms
+24 timing npm:load:display Completed in 1ms
+25 verbose logfile logs-max:10 dir:/home/robin/.npm/_logs/2023-10-20T02_55_47_759Z-
+26 verbose logfile /home/robin/.npm/_logs/2023-10-20T02_55_47_759Z-debug-0.log
+27 timing npm:load:logFile Completed in 6ms
+28 timing npm:load:timers Completed in 0ms
+29 timing npm:load:configScope Completed in 0ms
+30 timing npm:load Completed in 31ms
+31 silly logfile done cleaning log files
+32 silly package data {
+32 silly package data   name: 'e-commerce-rest-api',
+32 silly package data   version: '1.0.0',
+32 silly package data   description: 'CodeAcademy backend project',
+32 silly package data   main: 'index.js',
+32 silly package data   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+32 silly package data   author: '',
+32 silly package data   license: 'ISC',
+32 silly package data   dependencies: { express: '^4.18.2', pg: '^8.11.3', 'postgresql-client': '^2.9.1' },
+32 silly package data   devDependencies: {},
+32 silly package data   repository: {
+32 silly package data     type: 'git',
+32 silly package data     url: 'git+https://github.com/RobinsonGr/e-commerce-restapi.git'
+32 silly package data   },
+32 silly package data   bugs: { url: 'https://github.com/RobinsonGr/e-commerce-restapi/issues' },
+32 silly package data   homepage: 'https://github.com/RobinsonGr/e-commerce-restapi#readme',
+32 silly package data   keywords: [],
+32 silly package data   [Symbol(newline)]: '\n',
+32 silly package data   [Symbol(indent)]: '  '
+32 silly package data }
+33 timing command:init Completed in 65ms
+34 verbose exit 0
+35 timing npm Completed in 221ms
+36 info ok

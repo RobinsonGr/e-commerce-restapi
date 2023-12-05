@@ -1,0 +1,17 @@
+2023-10-23 15:59:39.959 [info] Log level: Info
+2023-10-23 15:59:39.959 [info] Validating found git in: "git"
+2023-10-23 15:59:39.959 [info] Using git "2.34.1" from "git"
+2023-10-23 15:59:39.959 [info] > git rev-parse --show-toplevel [34ms]
+2023-10-23 15:59:39.978 [info] > git rev-parse --git-dir --git-common-dir [31ms]
+2023-10-23 15:59:40.003 [info] Open repository: /mnt/c/Users/webma/Documents/robin/E-commerce-rest-API
+2023-10-23 15:59:40.118 [info] > git config --get commit.template [78ms]
+2023-10-23 15:59:40.191 [info] > git rev-parse --show-toplevel [135ms]
+2023-10-23 15:59:41.464 [info] > git show --textconv :index.js [1041ms]
+2023-10-23 15:59:41.464 [info] > git check-ignore -v -z --stdin [933ms]
+2023-10-23 15:59:41.465 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [1352ms]
+2023-10-23 15:59:41.472 [info] > git ls-files --stage -- /mnt/c/Users/webma/Documents/robin/E-commerce-rest-API/index.js [1034ms]
+2023-10-23 15:59:41.548 [info] > git cat-file -s 60abb39ba51aecafe2cc5fddc9f0fdebfae02cef [70ms]
+2023-10-23 15:59:46.147 [info] > git status -z -uall [4675ms]
+2023-10-23 15:59:46.217 [info] > git config --get commit.template [27ms]
+2023-10-23 15:59:46.412 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [210ms]
+2023-10-23 15:59:50.711 [info] > git status -z -uall [4293ms]

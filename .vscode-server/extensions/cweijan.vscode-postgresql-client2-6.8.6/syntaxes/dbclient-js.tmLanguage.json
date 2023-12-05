@@ -1,0 +1,13 @@
+{
+  "name": "JavaScript(Database Client)",
+  "scopeName": "source.dblicent.js",
+  "patterns": [
+    {
+      "match": "--.*$\\n?",
+      "name": "comment.line.double-minus.cypher"
+    },
+    {
+      "include": "source.js"
+    }
+  ]
+}

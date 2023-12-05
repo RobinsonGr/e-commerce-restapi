@@ -1,0 +1,11 @@
+{
+    "$schema":
+      "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+    "name": "NDJSON",
+    "patterns": [
+      {
+        "include": "source.json.comments"
+      }
+    ],
+    "scopeName": "source.ndjson"
+  }

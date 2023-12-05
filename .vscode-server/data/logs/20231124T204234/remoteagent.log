@@ -1,0 +1,10 @@
+2023-11-24 20:42:34.947 [info] 
+
+
+
+
+2023-11-24 20:42:34.967 [info] Extension host agent started.
+2023-11-24 20:42:35.087 [info] Deleted uninstalled extension from disk cweijan.vscode-postgresql-client2 /home/robin/.vscode-server/extensions/cweijan.vscode-postgresql-client2-6.8.2
+2023-11-24 20:42:35.242 [info] [127.0.0.1][f70bc9fd][ManagementConnection] New connection established.
+2023-11-24 20:42:35.630 [info] [127.0.0.1][44069d89][ExtensionHostConnection] New connection established.
+2023-11-24 20:42:35.964 [info] [127.0.0.1][44069d89][ExtensionHostConnection] <4816> Launched Extension Host Process.

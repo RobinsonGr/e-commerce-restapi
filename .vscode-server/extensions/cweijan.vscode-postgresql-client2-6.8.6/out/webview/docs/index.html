@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="Description">
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <style>
+    .sidebar-nav a:before,
+    .app-sub-sidebar li:before {
+      content: none !important;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px !important;
+      height: 6px !important;
+    }
+
+    body::-webkit-scrollbar {
+      width: 6 px !important;
+      height: 6px !important;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.8) !important;
+      border-radius: 8px !important;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background-color: #585B62 !important;
+      min-height: 50px;
+      border-radius: 5px !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script>
+
+    function addCss(href) {
+      var link = document.createElement('link');
+      link.href = href
+      link.rel = 'stylesheet'
+      document.documentElement.appendChild(link)
+    }
+
+    const theme = location.hash.match(/theme=(.+)/)?.[1] ?? location.search.match(/theme=(.+)/)?.[1];
+    console.log(theme)
+    addCss(theme == 'light' ? 'docsify/light.css' : 'docsify/dark.css')
+    // https://docsify.js.org/#/zh-cn/configuration
+    // https://jhildenbiddle.github.io/docsify-themeable/#/customization?id=theme-styles
+    window.$docsify = {
+      name: '',
+      repo: '',
+      maxLevel: 4,
+      subMaxLevel: 2,
+      loadSidebar: true,
+      loadNavbar: true,
+      alias: {
+        '/.*/_navbar.md': '/_navbar.md',
+        // '/en/(.*)': 'https://raw.githubusercontent.com/en/$1'
+      }
+    }
+  </script>
+  <script src="docsify/docsify.min.js"></script>
+  <script>
+    window.addEventListener('click', (event) => {
+      const target = event.target;
+      const href = target && event.target.getAttribute("href");
+      if (href && href.startsWith("#") && !href.includes("?id")) {
+        scrollTo(0, 0)
+      }
+    })
+  </script>
+</body>
+
+</html>

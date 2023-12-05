@@ -1,0 +1,17 @@
+2023-10-31 23:38:42.228 [info] 
+
+
+
+
+2023-10-31 23:38:42.242 [info] Extension host agent started.
+2023-10-31 23:38:42.699 [info] [127.0.0.1][211076e8][ManagementConnection] New connection established.
+2023-10-31 23:38:42.922 [info] [127.0.0.1][4fc97813][ExtensionHostConnection] New connection established.
+2023-10-31 23:38:43.699 [info] [127.0.0.1][4fc97813][ExtensionHostConnection] <3145> Launched Extension Host Process.
+2023-10-31 23:38:46.685 [info] Getting Manifest... cweijan.vscode-postgresql-client2
+2023-10-31 23:38:47.724 [info] Installing extension: cweijan.vscode-postgresql-client2
+2023-10-31 23:38:50.083 [warning] Extension signature verification failed with error 'ENOENT': cweijan.vscode-postgresql-client2
+2023-10-31 23:38:50.557 [info] Extracted extension to file:///home/robin/.vscode-server/extensions/cweijan.vscode-postgresql-client2-6.8.2: cweijan.vscode-postgresql-client2
+2023-10-31 23:38:50.563 [info] Renamed to /home/robin/.vscode-server/extensions/cweijan.vscode-postgresql-client2-6.8.2
+2023-10-31 23:38:50.567 [info] Extracting extension completed. cweijan.vscode-postgresql-client2
+2023-10-31 23:38:50.573 [info] Extension installed successfully: cweijan.vscode-postgresql-client2
+2023-10-31 23:38:50.579 [info] Marked extension as uninstalled cweijan.vscode-postgresql-client2-6.8.0

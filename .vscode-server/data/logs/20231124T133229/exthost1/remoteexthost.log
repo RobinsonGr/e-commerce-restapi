@@ -1,0 +1,17 @@
+2023-11-24 13:32:31.531 [info] Extension host with pid 3526 started
+2023-11-24 13:32:31.589 [info] Lock '/home/robin/.vscode-server/data/User/workspaceStorage/0a5f8335f346cff4c6d686fe14f3ddbd/vscode.lock': Lock acquired.
+2023-11-24 13:32:31.840 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2023-11-24 13:32:31.858 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2023-11-24 13:32:31.912 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2023-11-24 13:32:31.912 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2023-11-24 13:32:32.337 [info] Eager extensions activated
+2023-11-24 13:32:32.337 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 13:32:32.338 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 13:32:32.338 [info] ExtensionService#_doActivateExtension cweijan.vscode-postgresql-client2, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 13:38:53.245 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2023-11-24 13:38:56.589 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:markdown'
+2023-11-24 13:38:56.589 [info] ExtensionService#_doActivateExtension vscode.markdown-language-features, startup: false, activationEvent: 'onLanguage:markdown'
+2023-11-24 13:38:57.126 [info] ExtensionService#_doActivateExtension vscode.markdown-math, startup: false, activationEvent: 'api', root cause: vscode.markdown-language-features
+2023-11-24 13:39:21.065 [info] Extension host terminating: received terminate message from renderer
+2023-11-24 13:39:21.066 [info] Lock '/home/robin/.vscode-server/data/User/workspaceStorage/0a5f8335f346cff4c6d686fe14f3ddbd/vscode.lock': Marking the lockfile as scheduled to be released in 6000 ms.
+2023-11-24 13:39:21.111 [info] Extension host with pid 3526 exiting with code 0

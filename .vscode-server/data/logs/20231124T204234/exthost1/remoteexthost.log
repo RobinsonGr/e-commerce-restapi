@@ -1,0 +1,14 @@
+2023-11-24 20:42:37.050 [info] Extension host with pid 4816 started
+2023-11-24 20:42:37.074 [info] Lock '/home/robin/.vscode-server/data/User/workspaceStorage/d4d9ba7f9e9120d383ca2ad58048976e/vscode.lock': Lock acquired.
+2023-11-24 20:42:37.250 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2023-11-24 20:42:37.260 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2023-11-24 20:42:37.368 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2023-11-24 20:42:37.369 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2023-11-24 20:42:37.925 [info] Eager extensions activated
+2023-11-24 20:42:37.926 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 20:42:37.927 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 20:42:37.928 [info] ExtensionService#_doActivateExtension cweijan.vscode-postgresql-client2, startup: false, activationEvent: 'onStartupFinished'
+2023-11-24 20:42:48.617 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:javascript'
+2023-11-24 20:42:48.617 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2023-11-24 21:12:25.686 [info] ExtensionService#_doActivateExtension vscode.extension-editing, startup: false, activationEvent: 'onLanguage:json'
+2023-11-24 21:12:25.687 [info] ExtensionService#_doActivateExtension vscode.json-language-features, startup: false, activationEvent: 'onLanguage:json'

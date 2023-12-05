@@ -1,0 +1,12 @@
+2023-10-23 20:11:37.874 [info] Log level: Info
+2023-10-23 20:11:37.874 [info] Validating found git in: "git"
+2023-10-23 20:11:37.874 [info] Using git "2.34.1" from "git"
+2023-10-23 20:11:38.023 [info] > git rev-parse --show-toplevel [202ms]
+2023-10-23 20:11:38.254 [info] > git rev-parse --git-dir --git-common-dir [200ms]
+2023-10-23 20:11:38.271 [info] Open repository: /mnt/c/Users/webma/Documents/robinsongr/E-commerce-rest-API
+2023-10-23 20:11:38.852 [info] > git config --get commit.template [18ms]
+2023-10-23 20:11:39.002 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [140ms]
+2023-10-23 20:11:39.403 [info] > git check-ignore -v -z --stdin [47ms]
+2023-10-23 20:11:43.512 [info] > git status -z -uall [4504ms]
+2023-10-23 20:11:43.575 [info] > git config --get commit.template [27ms]
+2023-10-23 20:11:43.788 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [232ms]

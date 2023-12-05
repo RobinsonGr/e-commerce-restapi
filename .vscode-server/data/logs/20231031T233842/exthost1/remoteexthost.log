@@ -1,0 +1,16 @@
+2023-10-31 23:38:44.631 [info] Extension host with pid 3145 started
+2023-10-31 23:38:44.683 [info] ExtensionService#_doActivateExtension vscode.typescript-language-features, startup: false, activationEvent: 'onLanguage:javascript'
+2023-10-31 23:38:44.684 [info] ExtensionService#_doActivateExtension vscode.emmet, startup: false, activationEvent: 'onLanguage'
+2023-10-31 23:38:44.777 [info] Lock '/home/robin/.vscode-server/data/User/workspaceStorage/9c5f84b874567cc8f80506a1cea63372/vscode.lock': Lock acquired.
+2023-10-31 23:38:44.987 [info] ExtensionService#_doActivateExtension vscode.git-base, startup: true, activationEvent: '*', root cause: vscode.git
+2023-10-31 23:38:44.994 [info] ExtensionService#_doActivateExtension vscode.npm, startup: true, activationEvent: 'workspaceContains:package.json'
+2023-10-31 23:38:45.091 [info] ExtensionService#_doActivateExtension vscode.git, startup: true, activationEvent: '*'
+2023-10-31 23:38:45.092 [info] ExtensionService#_doActivateExtension vscode.github, startup: true, activationEvent: '*'
+2023-10-31 23:38:45.497 [info] Eager extensions activated
+2023-10-31 23:38:45.498 [info] ExtensionService#_doActivateExtension vscode.debug-auto-launch, startup: false, activationEvent: 'onStartupFinished'
+2023-10-31 23:38:45.498 [info] ExtensionService#_doActivateExtension vscode.merge-conflict, startup: false, activationEvent: 'onStartupFinished'
+2023-10-31 23:38:45.499 [info] ExtensionService#_doActivateExtension cweijan.vscode-postgresql-client2, startup: false, activationEvent: 'onStartupFinished'
+2023-10-31 23:38:46.555 [warning] [Decorations] CAPPING events from decorations provider vscode.git 924
+2023-10-31 23:38:47.104 [warning] [Decorations] CAPPING events from decorations provider vscode.git 924
+2023-10-31 23:38:55.990 [warning] [Decorations] CAPPING events from decorations provider vscode.git 924
+2023-10-31 23:39:01.020 [warning] [Decorations] CAPPING events from decorations provider vscode.git 924

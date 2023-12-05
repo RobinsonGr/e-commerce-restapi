@@ -1,0 +1,14 @@
+2023-10-23 20:40:14.880 [info] Log level: Info
+2023-10-23 20:40:14.880 [info] Validating found git in: "git"
+2023-10-23 20:40:14.880 [info] Using git "2.34.1" from "git"
+2023-10-23 20:40:15.067 [info] > git rev-parse --show-toplevel [197ms]
+2023-10-23 20:40:16.003 [info] > git rev-parse --git-dir --git-common-dir [880ms]
+2023-10-23 20:40:16.015 [info] Open repository: /mnt/c/Users/webma/Documents/robinsongr/E-commerce-rest-API
+2023-10-23 20:40:16.092 [info] > git config --get commit.template [18ms]
+2023-10-23 20:40:16.106 [info] > git rev-parse --show-toplevel [24ms]
+2023-10-23 20:40:16.138 [info] > git rev-parse --show-toplevel [22ms]
+2023-10-23 20:40:16.170 [info] > git rev-parse --show-toplevel [20ms]
+2023-10-23 20:40:16.256 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [150ms]
+2023-10-23 20:40:16.524 [info] > git ls-files --stage -- /mnt/c/Users/webma/Documents/robinsongr/E-commerce-rest-API/routes/index.js [32ms]
+2023-10-23 20:40:16.526 [info] > git show --textconv :routes/index.js [43ms]
+2023-10-23 20:40:16.655 [info] > git check-ignore -v -z --stdin [55ms]

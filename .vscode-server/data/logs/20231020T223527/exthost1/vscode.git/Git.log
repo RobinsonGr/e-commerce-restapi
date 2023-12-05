@@ -1,0 +1,18 @@
+2023-10-20 22:35:31.238 [info] Log level: Info
+2023-10-20 22:35:31.238 [info] Validating found git in: "git"
+2023-10-20 22:35:31.238 [info] Using git "2.34.1" from "git"
+2023-10-20 22:35:31.238 [info] > git rev-parse --show-toplevel [6ms]
+2023-10-20 22:35:31.246 [info] > git rev-parse --git-dir --git-common-dir [11ms]
+2023-10-20 22:35:31.275 [info] Open repository: /home/robin/E-commerce-rest-API
+2023-10-20 22:35:32.142 [info] > git check-ignore -v -z --stdin [66ms]
+2023-10-20 22:35:32.144 [info] > git rev-parse --show-toplevel [844ms]
+2023-10-20 22:35:32.147 [info] > git config --get commit.template [856ms]
+2023-10-20 22:35:32.168 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2023-10-20 22:35:32.227 [info] > git status -z -uall [52ms]
+2023-10-20 22:35:32.227 [info] > git show --textconv :index.js [18ms]
+2023-10-20 22:35:32.228 [info] > git ls-files --stage -- /home/robin/E-commerce-rest-API/index.js [8ms]
+2023-10-20 22:35:32.258 [info] > git cat-file -s 60abb39ba51aecafe2cc5fddc9f0fdebfae02cef [21ms]
+2023-10-20 22:35:32.261 [info] > git config --get commit.template [8ms]
+2023-10-20 22:35:32.276 [info] > git for-each-ref --format=%(refname)%00%(upstream:short)%00%(objectname)%00%(upstream:track)%00%(upstream:remotename)%00%(upstream:remoteref) refs/heads/master refs/remotes/master [4ms]
+2023-10-20 22:35:32.310 [info] > git status -z -uall [25ms]
+2023-10-20 22:35:32.587 [info] > git check-ignore -v -z --stdin [1ms]
