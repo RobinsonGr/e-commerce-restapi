@@ -1,12 +1,6 @@
 const { Pool } = require('pg');
 
-const pool = new Pool({
-    user: 'postgres',
-    host: 'localhost',
-    database: 'bamboo',
-    password: '123',
-    port: 6000,
-  }); 
+//this must be empty
 
   async function getProducts (req, res) {
     const response = await pool.query(`
