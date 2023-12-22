@@ -55,7 +55,7 @@ async function editUser (req, res) {
     try {
         query = `
             UPDATE customers
-            SET 
+            SET ${Object.keys(updateFields).map()}
             WHERE 
         `
     } catch(err) {
