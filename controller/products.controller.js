@@ -4,12 +4,15 @@ const pool = require('../config/database.js');
 async function getProducts(req, res) {
     try {
         const response = await pool.query(`
-            SELECT products.*, category_name
+            SELECT products.*, categories.name
             FROM products
-            JOIN products_categories ON products.id = products_categories.product_id
-            JOIN categories ON category_id = categories.id
+            LEFT JOIN products_category 
+            ON products.product_id = products_category.product_id
+            LEFT JOIN categories
+            ON products_category.category_id = categories.category_id
         `);
 
+        console.log(response)
         res.json(response.rows);
     } catch (err) {
         console.error('Failed to retrieve products:', err.message);
@@ -23,11 +26,11 @@ async function getProduct(req, res) {
 
     try {
         const response = await pool.query(`
-            SELECT products.*, category_name
+            SELECT products.*, categories.category_name
             FROM products
             JOIN products_categories ON products.id = products_categories.product_id
-            JOIN categories ON category_id = categories.id
-            WHERE products.id = $1
+            JOIN categories ON products_categories.category_id = categories.id
+            WHERE products.id = $1;
         `, [productId]);
 
         res.json(response.rows);
@@ -39,37 +42,38 @@ async function getProduct(req, res) {
 
 // Creates a new product
 async function createProduct(req, res) {
-    const { id, name, price, product_description, stockQuantity } = req.body.newProduct;
+    const { name, price, description, stock_quantity } = req.body.newProduct;
 
     try {
         const response = await pool.query(`
-            INSERT INTO products (id, name, price, product_description, stockquantity)
-            VALUES ($1, $2, $3, $4, $5)
-        `, [parseInt(id), name, parseInt(price), product_description, parseInt(stockQuantity)]);
+            INSERT INTO products (name, price, description, stock_quantity)
+            VALUES ($1, $2, $3, $4)
+        `, [name, parseInt(price), description, parseInt(stock_quantity)]);
 
-        console.log(response);
-        res.json(response);
+        res.json(response.rows);
     } catch (err) {
         console.error('Failed to create product:', err.message);
         res.status(500).json({ error: 'Failed to create product' });
-    }
-}
+    };
+};
 
 // Updates an existing product
 async function updateProduct(req, res) {
-    const { id, name, price, product_description, stockQuantity } = req.body.updateProduct;
+    const {id, name, price, description, stock_quantity} = req.body.updateProduct;
+    //this is the whole information 
 
-    const updateFields = {
-        name,
-        price: parseInt(price),
-        product_description,
-        stockquantity: parseInt(stockQuantity)
-    };
+    const updateFields = {};
 
+    if(name) updateFields.name = name;
+    if(price) updateFields.price = price;
+    if(description) updateFields.description = description;
+    if(stock_quantity) updateFields.stock_quantity = stock_quantity;
+    
+    
     const updateQuery = `
         UPDATE products
         SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(", ")}
-        WHERE id = $${Object.keys(updateFields).length + 1}
+        WHERE product_id = $${Object.keys(updateFields).length + 1}
         RETURNING *
     `;
 
@@ -79,7 +83,7 @@ async function updateProduct(req, res) {
         const response = await pool.query(updateQuery, values);
 
         console.log(response);
-        res.json(response);
+        res.json(response.rows);
     } catch (err) {
         console.error('Failed to update product:', err.message);
         res.status(500).json({ error: 'Failed to update product' });
@@ -92,3 +96,6 @@ module.exports = {
     createProduct,
     updateProduct,
 };
+3
+
+
