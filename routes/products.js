@@ -3,7 +3,7 @@ const {getProducts, getProduct, createProduct, updateProduct} = require('../cont
 const {Router} = require('express');
 const router = Router();
 
-router.get('/:categoryId', getProducts)
+router.get('/:categoryURL', getProducts)
 
 router.get('/:id', getProduct)
 

@@ -2,9 +2,11 @@ const express = require('express');
 const app = express();
 const passport = require('passport');
 const session = require('express-session');
+const cors = require('cors');
 
 const authSetup = require('./config/passport');
 
+app.use(cors())
 authSetup(passport);
 
 

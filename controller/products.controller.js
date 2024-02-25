@@ -3,22 +3,22 @@ const pool = require('../config/database.js');
 // Retrieves all products with their categories
 // Retrieves all products from a specific categories, with their categories 
 async function getProducts(req, res) {
-    const categoryId = parseInt(req.params.categoryId);
+    const categoryURL = req.params.categoryURL;
 
     try {
 
         //PENDING TO MODIFY THE QUERY TO BE ABLE TO RETRIEVE PRODUCTS BY CATEGORY
         const response = await pool.query(`
-            SELECT products.*, categories.name
+            SELECT products.*, categories.name as category
             FROM products
             LEFT JOIN categories_products 
             ON products.id = categories_products.product_id
             LEFT JOIN categories
             ON categories_products.category_id = categories.id
-            WHERE categories.id = $1;
-        `, [categoryId]);
+            WHERE categories.url = $1;
+        `, [categoryURL]);
 
-        console.log(response)
+        console.log(categoryURL)
         res.json(response.rows);
     } catch (err) {
         console.error('Failed to retrieve products:', err.message);
