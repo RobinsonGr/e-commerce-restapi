@@ -1,10 +1,10 @@
 
-const checkCompleteData = ({username, name, password, address}) => {
-    return username && name && password && address 
+const checkCompleteData = ({email, name, password, address}) => {
+    return email && name && password && address 
 };
 
-const checkUsernameLength = ({username}) => {
-    return username.length >= 5; 
+const checkUsernameLength = ({email}) => {
+    return email.length >= 5; 
 };
 
 const checkPasswordLength = ({password}) => {
