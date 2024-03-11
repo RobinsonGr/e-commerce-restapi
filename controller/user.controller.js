@@ -4,9 +4,12 @@ const {checkCompleteData,
     checkPasswordLength,
     checkUsernameLength} = require('../utils/checkUserData.js');
 
+
 async function addUser (req, res){
    try {
-    const {email, name, password, address} = req.body
+   const {email, name, password, address} = req.body
+
+    console.log(req)
     
     if(!checkCompleteData(req.body)) {
         return res.status(400).json({ message: 'Incomplete data, please fill in all fields' });

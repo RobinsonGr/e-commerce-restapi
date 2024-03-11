@@ -4,15 +4,10 @@ const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
 
-
-
 const authSetup = require('./config/passport');
 authSetup(passport);
 
-
 app.use(cors())
-
-
 
 app.use(
   session({
@@ -24,11 +19,10 @@ app.use(
   
   app.use(passport.initialize());
   app.use(passport.session());
-  
-
 
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+// Enables parsing of complex form data as nested objects, arrays using the 'qs' library for flexibility (true).
+app.use(express.urlencoded({extended: true}));
 
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
