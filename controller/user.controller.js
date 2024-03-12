@@ -34,8 +34,7 @@ async function addUser (req, res){
 
     return res.json({message: 'User successfully created'});
    } catch (err) {
-    console.log(err.message)
-    res.status(500).json({error: 'We couldn\'\t create the user'})
+    res.status(500).json({error: err.message})
    };
 };
 

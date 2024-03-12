@@ -9,15 +9,24 @@ const router = Router();
 
 //I'll be sending the data for registration with formData format, even though without sending complex data
 // as imgs, so i got to use multer with .none(), it could be send as plain object just with urlencoded as default parser
+
+
+const middlewareChecker = (req, res, next) => {
+  console.log(req.body)
+  next()
+}
+
 router.post('/register', upload.none(), addUser);
-router.post('/login', passport.authenticate("local",  {
+router.post('/login', middlewareChecker, passport.authenticate("local",  {
     successRedirect: "/user/checklogin",
     failureRedirect: "/user/checklogin",
   })); 
 
 //send true or false if the user is authenticathed
 router.get('/checklogin', (req, res) => {
+  console.log({'checkLogin endpoint': req.isAuthenticated()})
   if (req.isAuthenticated()) {
+    console.log('checkLogin endpoint isAuth')
     return res.status(200).json({ 
       isAuth: true
     });

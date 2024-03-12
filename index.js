@@ -14,8 +14,13 @@ app.use(
     secret: '123',
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      httpOnly: false,
+      maxAge: 3600000,
+      secure: true,
+    }
   })
-  )
+  );
   
   app.use(passport.initialize());
   app.use(passport.session());
