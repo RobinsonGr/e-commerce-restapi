@@ -7,7 +7,10 @@ const cors = require('cors');
 const authSetup = require('./config/passport');
 authSetup(passport);
 
-app.use(cors())
+app.use(cors({
+  origin: "*",
+  credentials: true,
+}));
 
 app.use(
   session({
@@ -17,7 +20,7 @@ app.use(
     cookie: {
       httpOnly: false,
       maxAge: 3600000,
-      secure: true,
+      secure: false,
     }
   })
   );
@@ -32,9 +35,6 @@ app.use(express.urlencoded({extended: true}));
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/user', require('./routes/users'));
-
-
-
         
 app.listen(3000, () => {
   console.log('listening at port 3000')

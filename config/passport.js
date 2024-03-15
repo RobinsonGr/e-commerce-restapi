@@ -6,6 +6,8 @@ function authSetup(passport) {
 
     const userAuthentication = async (email, password, done) => {
 
+       
+
         //Retriving user from the db and comparing the password in the db 
         await pool.query(`
         SELECT *
@@ -15,6 +17,7 @@ function authSetup(passport) {
         [email],
         async (err, result) => {            
                 const user = result.rows[0];
+                console.log(user)
                 const passwordMatch = await bcrypt.compare(password, user.password);
 
                 if(err) {
