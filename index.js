@@ -8,7 +8,7 @@ const authSetup = require('./config/passport');
 authSetup(passport);
 
 app.use(cors({
-  origin: "*",
+  origin: "http://localhost:5173",
   credentials: true,
 }));
 

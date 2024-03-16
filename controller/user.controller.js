@@ -8,8 +8,6 @@ const {checkCompleteData,
 async function addUser (req, res){
    try {
    const {email, name, password, address} = req.body
-
-    console.log(req)
     
     if(!checkCompleteData(req.body)) {
         return res.status(400).json({ message: 'Incomplete data, please fill in all fields' });
@@ -39,6 +37,32 @@ async function addUser (req, res){
 };
 
 
+async function getUser(req, res) {
+    const isAuth = req.isAuthenticated();
+    if(!isAuth) {
+        return res.status(401).json({error: "User isn't authenticated"})
+    }
+    const userId = req.session.passport.user
+    console.log(userId)
+
+    try{
+        const retrieveUserData = await pool.query(
+            `SELECT * FROM customers
+            WHERE ID = $1
+            `, [userId]
+            )
+        if (retrieveUserData.rows.length === 0) {
+        return res.status(404).json({ error: 'User not found' });}      
+
+        const {email, name, address} = retrieveUserData.rows[0]
+        const userData = {isAuth, email, name, address}
+        return res.json(userData)
+    } catch(error) {
+        console.error('Error retrieving user Data', error);
+        return res.status(500).json({ error: 'Internal error server'})
+    }
+  };
+
 async function editUser (req, res) {
     const {username, name, password, address} = req.body
 
@@ -63,5 +87,6 @@ async function editUser (req, res) {
 };
 
 module.exports = {
-    addUser
+    addUser,
+    getUser
 };

@@ -1,4 +1,4 @@
-const {addUser} = require('../controller/user.controller.js');
+const {addUser, getUser} = require('../controller/user.controller.js');
 const passport = require('passport');
 const multer = require('multer');
 const upload = multer()
@@ -9,27 +9,26 @@ const router = Router();
 // as imgs, so i got to use multer with .none(), it could be send as plain object just with urlencoded as default parser
 
 router.post('/register', upload.none(), addUser);
-router.post('/login', passport.authenticate("local",  {
-    successRedirect: "/user/checklogin",
-    failureRedirect: "/user/checklogin",
-  })); 
+router.post('/login', (req, res, next) => {
+  passport.authenticate('local', (err, user, info) => {
+    if (err) { 
+      return next(err); // Handle general errors
+    }
+
+    if (!user) {
+      return res.status(401).json({ message: 'Authentication failed' }); // Or your preferred error response
+    }
+
+    // Successful login
+    req.logIn(user, (err) => {
+      if (err) { return next(err); }
+      return res.json({ message: 'Login successful', user }); // Or any other success response
+    });   
+  })(req, res, next); 
+});
 
 //send true or false if the user is authenticathed
-router.get('/checklogin', (req, res) => {
-  console.log({'checkLogin endpoint': req.isAuthenticated()})
-  if (req.isAuthenticated()) {
-    console.log('checkLogin endpoint isAuth')
-    return res.status(200).json({ 
-      isAuth: true
-    });
-  } 
-  
-  //unathorized
-    return res.status(401).json({ 
-      isAuth: false
-    });
-  
-});
+router.get('/me', getUser);
 
 
 module.exports = router;

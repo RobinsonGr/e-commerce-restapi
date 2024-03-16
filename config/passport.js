@@ -17,7 +17,6 @@ function authSetup(passport) {
         [email],
         async (err, result) => {            
                 const user = result.rows[0];
-                console.log(user)
                 const passwordMatch = await bcrypt.compare(password, user.password);
 
                 if(err) {
@@ -51,8 +50,6 @@ passport.deserializeUser((id, done) => {
         if(err) {
             done(err)
         };
-
-        console.log('deserializer')
         //CHECK id for object
         const userId = result.rows[0].id;
         return done(null, userId);
