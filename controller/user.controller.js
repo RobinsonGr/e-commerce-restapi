@@ -4,6 +4,20 @@ const {checkCompleteData,
     checkPasswordLength,
     checkUsernameLength} = require('../utils/checkUserData.js');
 
+    const retrieveUserData = (userId) => {
+        const rawData = await pool.query(
+            `SELECT * FROM customers
+            WHERE ID = $1
+            `, [userId]
+            );
+            
+            if (retrieveUserData.rows.length === 0) {
+                return res.status(404).json({ error: 'User not found' });
+            }      
+            return rawData.rows[0] 
+    };
+        
+
 
 async function addUser (req, res){
    try {
@@ -36,7 +50,7 @@ async function addUser (req, res){
    };
 };
 
-
+//get
 async function getUser(req, res) {
     const isAuth = req.isAuthenticated();
     if(!isAuth) {
@@ -46,40 +60,34 @@ async function getUser(req, res) {
     console.log(userId)
 
     try{
-        const retrieveUserData = await pool.query(
-            `SELECT * FROM customers
-            WHERE ID = $1
-            `, [userId]
-            )
-        if (retrieveUserData.rows.length === 0) {
-        return res.status(404).json({ error: 'User not found' });}      
-
-        const {email, name, address} = retrieveUserData.rows[0]
-        const userData = {isAuth, email, name, address}
-        return res.json(userData)
+        const  {email, name, address} = retrieveUserData()
+        return res.json({isAuth, email, name, address})
     } catch(error) {
         console.error('Error retrieving user Data', error);
         return res.status(500).json({ error: 'Internal error server'})
     }
   };
 
+//put 
 async function editUser (req, res) {
-    const {username, name, password, address} = req.body
+    const {id, name, address} = req.body;
 
     const updateFields = {};
 
-    if(username) updateFields.username = username;
     if(name) updateFields.name = name;
-    if(password) updateFields.password = password;
     if(address) updateFields.address = address;
 
+    const query = `
+    UPDATE customers
+    SET ${Object.keys(updateFields).map((key, index) => `${key} = ${index}`).join(',')}
+    WHERE id = ${`${data.length - 1}`}
+`
+    const data = [...Object.values(updateFields), id]
 
     try {
-        query = `
-            UPDATE customers
-            SET ${Object.keys(updateFields).map()}
-            WHERE 
-        `
+        await pool.query(query, data)
+        return res.json({'Your profile was updated sucessfully'})
+
     } catch(err) {
         console.log(err.message)
          res.status(500).json({error: 'We couldn\'\t edit the user'})
@@ -88,5 +96,6 @@ async function editUser (req, res) {
 
 module.exports = {
     addUser,
-    getUser
+    getUser,
+    editUser
 };
