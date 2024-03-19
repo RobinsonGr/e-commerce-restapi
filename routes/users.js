@@ -30,7 +30,7 @@ router.post('/login', (req, res, next) => {
 //send true or false if the user is authenticathed
 router.get('/me', getUser);
 
-reuter.put("/edit", )
+router.put("/edit", )
 
 
 module.exports = router;

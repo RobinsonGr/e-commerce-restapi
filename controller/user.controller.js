@@ -4,7 +4,7 @@ const {checkCompleteData,
     checkPasswordLength,
     checkUsernameLength} = require('../utils/checkUserData.js');
 
-    const retrieveUserData = (userId) => {
+    const retrieveUserData = async (userId) => {
         const rawData = await pool.query(
             `SELECT * FROM customers
             WHERE ID = $1
@@ -16,9 +16,10 @@ const {checkCompleteData,
             }      
             return rawData.rows[0] 
     };
+
+
+
         
-
-
 async function addUser (req, res){
    try {
    const {email, name, password, address} = req.body
@@ -56,11 +57,11 @@ async function getUser(req, res) {
     if(!isAuth) {
         return res.status(401).json({error: "User isn't authenticated"})
     }
+    //it gets the user by deserialize the cookie storage on browser
     const userId = req.session.passport.user
-    console.log(userId)
 
     try{
-        const  {email, name, address} = retrieveUserData()
+        const  {email, name, address} = retrieveUserData(userId)
         return res.json({isAuth, email, name, address})
     } catch(error) {
         console.error('Error retrieving user Data', error);
@@ -70,23 +71,24 @@ async function getUser(req, res) {
 
 //put 
 async function editUser (req, res) {
-    const {id, name, address} = req.body;
-
+    const {name, address} = req.body;
     const updateFields = {};
 
+    const userId = req.session.passport.user
     if(name) updateFields.name = name;
     if(address) updateFields.address = address;
 
     const query = `
     UPDATE customers
+    //join works for every iteration, it's no needed in each iteration
     SET ${Object.keys(updateFields).map((key, index) => `${key} = ${index}`).join(',')}
     WHERE id = ${`${data.length - 1}`}
 `
-    const data = [...Object.values(updateFields), id]
+    const data = [...Object.values(updateFields), userId]
 
     try {
         await pool.query(query, data)
-        return res.json({'Your profile was updated sucessfully'})
+        return res.json({message: 'Your profile was updated sucessfully'})
 
     } catch(err) {
         console.log(err.message)
