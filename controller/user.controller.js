@@ -11,14 +11,11 @@ const {checkCompleteData,
             `, [userId]
             );
             
-            if (retrieveUserData.rows.length === 0) {
+            if (rawData.rows.length === 0) {
                 return res.status(404).json({ error: 'User not found' });
             }      
             return rawData.rows[0] 
     };
-
-
-
         
 async function addUser (req, res){
    try {
@@ -71,20 +68,23 @@ async function getUser(req, res) {
 
 //put 
 async function editUser (req, res) {
-    const {name, address} = req.body;
-    const updateFields = {};
 
+     const {name, address} = req.body;
     const userId = req.session.passport.user
+    
+    const updateFields = {}
     if(name) updateFields.name = name;
     if(address) updateFields.address = address;
 
+    // values that goes to the sanitazation 
+    const data = [...Object.values(updateFields), userId]
+    
+    //join works for every iteration, it's no needed in each iteration
     const query = `
     UPDATE customers
-    //join works for every iteration, it's no needed in each iteration
-    SET ${Object.keys(updateFields).map((key, index) => `${key} = ${index}`).join(',')}
-    WHERE id = ${`${data.length - 1}`}
+    SET ${Object.keys(updateFields).map((key, index) => `${key} = $${index + 1}`).join(',')}
+    WHERE id = $${data.length}
 `
-    const data = [...Object.values(updateFields), userId]
 
     try {
         await pool.query(query, data)
@@ -92,7 +92,7 @@ async function editUser (req, res) {
 
     } catch(err) {
         console.log(err.message)
-         res.status(500).json({error: 'We couldn\'\t edit the user'})
+         res.status(500).json({error: 'We couldn\'t edit the user'})
     };
 };
 

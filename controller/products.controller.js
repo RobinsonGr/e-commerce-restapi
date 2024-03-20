@@ -77,12 +77,12 @@ async function updateProduct(req, res) {
     
     
     const updateQuery = `
-        UPDATE products
-        SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(", ")}
-        WHERE product_id = $${Object.keys(updateFields).length + 1}
-        RETURNING *
+    UPDATE products
+    SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(", ")}
+    WHERE product_id = $${Object.keys(updateFields).length + 1}
+    RETURNING *
     `;
-
+    
     const values = [...Object.values(updateFields), parseInt(id)];
 
     try {

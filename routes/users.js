@@ -1,4 +1,4 @@
-const {addUser, getUser} = require('../controller/user.controller.js');
+const {addUser, getUser, editUser} = require('../controller/user.controller.js');
 const passport = require('passport');
 const multer = require('multer');
 const upload = multer()
@@ -21,7 +21,7 @@ router.post('/login', (req, res, next) => {
 
     // Successful login
     req.logIn(user, (err) => {
-      if (err) { return next(err); }
+      if (err) { return next(err)}
       return res.json({ message: 'Login successful', user }); // Or any other success response
     });   
   })(req, res, next); 
@@ -30,8 +30,14 @@ router.post('/login', (req, res, next) => {
 //send true or false if the user is authenticathed
 router.get('/me', getUser);
 
-router.put("/edit", )
+router.put("/edituser", checkAuthentication, editUser);
 
+function checkAuthentication(req, res, next) {
+  if(req.isAuthenticated()) {
+    return next()
+  }
+  res.status(401).json({ error: 'Unauthorized' });
+};
 
 module.exports = router;
 
