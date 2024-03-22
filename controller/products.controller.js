@@ -26,6 +26,29 @@ async function getProducts(req, res) {
     }
 }
 
+
+async function getProductsByCategoryId(req, res) {
+    const categoryId = req.params.categoryId;
+
+    try {
+        //PENDING TO MODIFY THE QUERY TO BE ABLE TO RETRIEVE PRODUCTS BY CATEGORY
+        const response = await pool.query(`
+            SELECT products.*
+            FROM products
+            LEFT JOIN categories_products 
+            ON products.id = categories_products.product_id
+            LEFT JOIN categories
+            ON categories_products.category_id = categories.id
+            WHERE categories.id = $1;
+        `, [categoryId]);
+
+        res.json(response.rows);
+    } catch (err) {
+        console.error('Failed to retrieve products:', err.message);
+        res.status(500).json({ error: 'Failed to retrieve products' });
+    }
+}
+
 // Retrieves a single product with its category (with id)
 async function getProduct(req, res) {
     const productId = parseInt(req.params.id);
@@ -101,7 +124,8 @@ module.exports = {
     getProduct,
     createProduct,
     updateProduct,
+    getProductsByCategoryId
 };
-3
+
 
 

@@ -5,16 +5,7 @@ const {checkCompleteData,
     checkUsernameLength} = require('../utils/checkUserData.js');
 
     const retrieveUserData = async (userId) => {
-        const rawData = await pool.query(
-            `SELECT * FROM customers
-            WHERE ID = $1
-            `, [userId]
-            );
-            
-            if (rawData.rows.length === 0) {
-                return res.status(404).json({ error: 'User not found' });
-            }      
-            return rawData.rows[0] 
+       
     };
         
 async function addUser (req, res){
@@ -57,8 +48,18 @@ async function getUser(req, res) {
     //it gets the user by deserialize the cookie storage on browser
     const userId = req.session.passport.user
 
+    const rawData = await pool.query(
+        `SELECT * FROM customers
+        WHERE ID = $1
+        `, [userId]
+        );
+        
+        if (rawData.rows.length === 0) {
+            return res.status(404).json({ error: 'User not found' });
+        }      
+
     try{
-        const  {email, name, address} = retrieveUserData(userId)
+        const  {email, name, address} = rawData.rows[0]
         return res.json({isAuth, email, name, address})
     } catch(error) {
         console.error('Error retrieving user Data', error);
