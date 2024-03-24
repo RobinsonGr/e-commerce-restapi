@@ -24,7 +24,7 @@ async function getProducts(req, res) {
         console.error('Failed to retrieve products:', err.message);
         res.status(500).json({ error: 'Failed to retrieve products' });
     }
-}
+};
 
 
 async function getProductsByCategoryId(req, res) {
@@ -88,7 +88,7 @@ async function createProduct(req, res) {
 
 // Updates an existing product
 async function updateProduct(req, res) {
-    const {id, name, price, description, stock_quantity} = req.body.updateProduct;
+    const {id, name, price, description, img, stock_quantity} = req.body;
     //this is the whole information 
 
     const updateFields = {};
@@ -97,12 +97,12 @@ async function updateProduct(req, res) {
     if(price) updateFields.price = price;
     if(description) updateFields.description = description;
     if(stock_quantity) updateFields.stock_quantity = stock_quantity;
-    
+    if(img) updateFields.img = stock_quantity;
     
     const updateQuery = `
     UPDATE products
     SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(", ")}
-    WHERE product_id = $${Object.keys(updateFields).length + 1}
+    WHERE id = $${Object.keys(updateFields).length + 1}
     RETURNING *
     `;
     
