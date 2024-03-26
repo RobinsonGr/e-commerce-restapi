@@ -71,13 +71,13 @@ async function getProduct(req, res) {
 
 // Creates a new product
 async function createProduct(req, res) {
-    const { name, price, description, stock_quantity } = req.body.newProduct;
+    const { name, price, description, img, stock } = req.body;
 
     try {
         const response = await pool.query(`
-            INSERT INTO products (name, price, description, stock_quantity)
-            VALUES ($1, $2, $3, $4)
-        `, [name, parseInt(price), description, parseInt(stock_quantity)]);
+            INSERT INTO products (name, price, description, stock, img)
+            VALUES ($1, $2, $3, $4, $5)
+        `, [name, parseInt(price), description, parseInt(stock), img]);
 
         res.json(response.rows);
     } catch (err) {
@@ -88,20 +88,21 @@ async function createProduct(req, res) {
 
 // Updates an existing product
 async function updateProduct(req, res) {
-    const {id, name, price, description, img, stock_quantity} = req.body;
+    const {id, name, price, description, img, stock} = req.body;
     //this is the whole information 
 
     const updateFields = {};
 
+        console.log(req.body)
     if(name) updateFields.name = name;
     if(price) updateFields.price = price;
     if(description) updateFields.description = description;
-    if(stock_quantity) updateFields.stock_quantity = stock_quantity;
-    if(img) updateFields.img = stock_quantity;
+    if(stock) updateFields.stock = stock;
+    if(img) updateFields.img = img;
     
     const updateQuery = `
     UPDATE products
-    SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(", ")}
+    SET ${Object.keys(updateFields).map((column, index) => `${column} = $${index + 1}`).join(",")}
     WHERE id = $${Object.keys(updateFields).length + 1}
     RETURNING *
     `;
