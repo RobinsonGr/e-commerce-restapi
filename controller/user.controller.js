@@ -4,9 +4,6 @@ const {checkCompleteData,
     checkPasswordLength,
     checkUsernameLength} = require('../utils/checkUserData.js');
 
-    const retrieveUserData = async (userId) => {
-       
-    };
         
 async function addUser (req, res){
    try {
