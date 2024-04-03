@@ -32,6 +32,17 @@ router.get('/me', getUser);
 
 router.put("/edituser", checkAuthentication, editUser);
 
+router.get('/logout', (req, res) => {
+  req.logout(function(err) {
+      if (err) {
+          console.error('Error logging out:', err);
+          return res.status(500).send('Error logging out');
+      }
+      res.send('ok')
+     // res.redirect('/'); 
+  });
+});
+
 function checkAuthentication(req, res, next) {
   if(req.isAuthenticated()) {
     return next()
