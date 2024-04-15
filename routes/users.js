@@ -38,11 +38,12 @@ router.get('/logout', (req, res) => {
           console.error('Error logging out:', err);
           return res.status(500).send('Error logging out');
       }
-      res.send('ok')
-     // res.redirect('/'); 
+    
+      res.redirect('/'); 
   });
 });
 
+// Middleware to check if user is authenticated
 function checkAuthentication(req, res, next) {
   if(req.isAuthenticated()) {
     return next()
