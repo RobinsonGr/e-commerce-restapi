@@ -18,7 +18,8 @@ async function getProducts(req, res) {
             WHERE categories.url = $1;
         `, [categoryURL]);
 
-        console.log(categoryURL)
+        console.log(req.isAuthenticated())
+
         res.json(response.rows);
     } catch (err) {
         console.error('Failed to retrieve products:', err.message);
@@ -50,19 +51,20 @@ async function getProductsByCategoryId(req, res) {
 }
 
 // Retrieves a single product with its category (with id)
+//categories.category_name
 async function getProduct(req, res) {
     const productId = parseInt(req.params.id);
 
     try {
         const response = await pool.query(`
-            SELECT products.*, categories.category_name
+            SELECT products.*, categories.name as category
             FROM products
             JOIN categories_products ON products.id = categories_products.product_id
             JOIN categories ON categories_products.category_id = categories.id
             WHERE products.id = $1;
         `, [productId]);
 
-        res.json(response.rows);
+        res.json(response.rows[0]);
     } catch (err) {
         console.error('Failed to retrieve product:', err.message);
         res.status(500).json({ error: 'Failed to retrieve product' });

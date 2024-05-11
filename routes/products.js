@@ -10,8 +10,8 @@ router.get('/bycategoryid/:categoryId', getProductsByCategoryId)
 router.get('/individual/:id', getProduct)
 
 
-router.post('/', createProduct)
+router.post('/', createProduct);
 
-router.put('/', updateProduct)
+router.put('/', updateProduct);
 
 module.exports = router;

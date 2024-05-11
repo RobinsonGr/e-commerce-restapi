@@ -3,9 +3,17 @@ const bcrypt = require('bcrypt');
 const {checkCompleteData,
     checkPasswordLength,
     checkUsernameLength} = require('../utils/checkUserData.js');
-
         
-async function addUser (req, res){
+ function checkAuthentication(req, res, next) {
+        if(req.isAuthenticated()) {
+          return next()
+        }
+        console.log(req.isAuthenticated())
+        //console.log(req.isAuthenticated())
+        res.status(401).json({ error: 'Unauthorized' });
+      };
+
+    async function addUser (req, res){
    try {
    const {email, name, password, address} = req.body
     
@@ -39,6 +47,7 @@ async function addUser (req, res){
 //get
 async function getUser(req, res) {
     const isAuth = req.isAuthenticated();
+    console.log( req.isAuthenticated())
     if(!isAuth) {
         return res.status(401).json({error: "User isn't authenticated"})
     }
@@ -67,6 +76,8 @@ async function getUser(req, res) {
 //put 
 async function editUser (req, res) {
 
+console.log(req.session.passport.user)
+
      const {name, address} = req.body;
     const userId = req.session.passport.user
     
@@ -81,11 +92,11 @@ async function editUser (req, res) {
     const query = `
     UPDATE customers
     SET ${Object.keys(updateFields).map((key, index) => `${key} = $${index + 1}`).join(',')}
-    WHERE id = $${data.length}
-`
+    WHERE id = $${data.length}`
 
     try {
         await pool.query(query, data)
+        
         return res.json({message: 'Your profile was updated sucessfully'})
 
     } catch(err) {
@@ -97,5 +108,6 @@ async function editUser (req, res) {
 module.exports = {
     addUser,
     getUser,
-    editUser
+    editUser,
+    checkAuthentication
 };

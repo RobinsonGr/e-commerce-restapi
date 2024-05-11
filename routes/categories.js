@@ -7,9 +7,4 @@ categoriesRouter.get('/', getCategories);
 categoriesRouter.post('/', addCategories);
 categoriesRouter.delete('/:id', deleteCategories);
 
-
-categoriesRouter.get('/', getCategories);
-categoriesRouter.post('/', addCategories);
-categoriesRouter.delete('/:id', deleteCategories);
-
 module.exports = categoriesRouter;

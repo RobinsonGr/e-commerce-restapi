@@ -8,6 +8,7 @@ async function getCategories(req, res) {
         FROM categories `
     );
 
+    console.log(req.isAuthenticated())
     res.json(response.rows)
   } catch(err) { 
     console.error('Failed to delete category:', err.message);

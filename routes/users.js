@@ -4,6 +4,7 @@ const multer = require('multer');
 const upload = multer()
 const {Router} = require('express');
 const router = Router();
+const {checkAuthentication} = require('../controller/user.controller.js')
 
 //I'll be sending the data for registration with formData format, even though without sending complex data
 // as imgs, so i got to use multer with .none(), it could be send as plain object just with urlencoded as default parser
@@ -22,6 +23,7 @@ router.post('/login', (req, res, next) => {
     // Successful login
     req.logIn(user, (err) => {
       if (err) { return next(err)}
+      //console.log(req.isAuthenticated())
       return res.json({ message: 'Login successful', user }); // Or any other success response
     });   
   })(req, res, next); 
@@ -30,26 +32,21 @@ router.post('/login', (req, res, next) => {
 //send true or false if the user is authenticathed
 router.get('/me', getUser);
 
-router.put("/edituser", checkAuthentication, editUser);
+router.put('/edituser', editUser);
+router.get('/test', checkAuthentication, (req, res) => {res.status(200).json({message: 'it worked'})});
 
 router.get('/logout', (req, res) => {
   req.logout(function(err) {
       if (err) {
-          console.error('Error logging out:', err);
+          console.error('Error logging loout:', err);
           return res.status(500).send('Error logging out');
       }
-    
-      res.redirect('/'); 
+    res.status(200).json({ message: 'Logout successful' }); 
   });
 });
 
 // Middleware to check if user is authenticated
-function checkAuthentication(req, res, next) {
-  if(req.isAuthenticated()) {
-    return next()
-  }
-  res.status(401).json({ error: 'Unauthorized' });
-};
+
 
 module.exports = router;
 

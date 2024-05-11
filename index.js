@@ -3,6 +3,9 @@ const app = express();
 const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
+const env = require('dotenv')
+
+env.config()
 
 const authSetup = require('./config/passport');
 authSetup(passport);
@@ -35,6 +38,9 @@ app.use(express.urlencoded({extended: true}));
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/user', require('./routes/users'));
+app.use('/stripe', require('./routes/stripe'))
+
+console.log(require('./routes/stripe'))
         
 app.listen(3000, () => {
   console.log('listening at port 3000')
