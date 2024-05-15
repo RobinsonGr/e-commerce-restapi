@@ -36,6 +36,27 @@ async function addCategories (req, res) {
     }
 };
 
+async function editCategories(req, res) {
+    const { id } = req.params;
+    const { name } = req.body;
+
+    try {
+        const response = await pool.query(
+            `UPDATE categories
+            SET name = $1
+            WHERE category_id = $2
+            RETURNING *`,
+            [name, id]
+        );
+
+        return res.json(response.rows);
+    } catch (err) {
+        console.error('Failed to edit category:', err.message);
+        res.status(500).json({ error: 'Failed to edit category' });
+    }
+};
+
+
 //deletes a category from the db with the id as parameter
 async function deleteCategories (req, res) {
     const {id} = req.params;
@@ -58,6 +79,6 @@ async function deleteCategories (req, res) {
 module.exports = {
     getCategories,
     addCategories,
-    deleteCategories
-}
-
+    deleteCategories,
+    editCategories
+};

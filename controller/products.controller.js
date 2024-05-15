@@ -18,7 +18,7 @@ async function getProducts(req, res) {
             WHERE categories.url = $1;
         `, [categoryURL]);
 
-        console.log(req.isAuthenticated())
+        console.log(response.rows[0])
 
         res.json(response.rows);
     } catch (err) {
