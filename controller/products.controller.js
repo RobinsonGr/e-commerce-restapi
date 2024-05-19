@@ -18,8 +18,6 @@ async function getProducts(req, res) {
             WHERE categories.url = $1;
         `, [categoryURL]);
 
-        console.log(response.rows[0])
-
         res.json(response.rows);
     } catch (err) {
         console.error('Failed to retrieve products:', err.message);
@@ -73,25 +71,42 @@ async function getProduct(req, res) {
 
 // Creates a new product
 async function createProduct(req, res) {
-    const { name, price, description, img, stock } = req.body;
+    const { name, price, description, img, stock, selectedCategory } = req.body;
+    const imgChecked = !img ? 'https://i.ibb.co/9yHWqDq/ECO-empty-image-product.png' : img
 
     try {
+        await pool.query('BEGIN');
+
         const response = await pool.query(`
             INSERT INTO products (name, price, description, stock, img)
             VALUES ($1, $2, $3, $4, $5)
-        `, [name, parseInt(price), description, parseInt(stock), img]);
+            RETURNING id
+        `, [name, parseInt(price), description, parseInt(stock), imgChecked]);
 
-        res.json(response.rows);
+        const productId = response.rows[0].id;
+
+        await pool.query(`
+            INSERT INTO categories_products (category_id, product_id)
+            VALUES ($1, $2)
+        `, [selectedCategory, productId]);
+
+        await pool.query('COMMIT');
+
+        res.json({ productId });
     } catch (err) {
-        console.error('Failed to create product:', err.message);
-        res.status(500).json({ error: 'Failed to create product' });
-    };
-};
+        await pool.query('ROLLBACK');
+        console.error('Failed to create product and category relation:', err.message);
+        res.status(500).json({ error: 'Failed to create product and category relation' });
+    }
+}
 
 // Updates an existing product
 async function updateProduct(req, res) {
-    const {id, name, price, description, img, stock} = req.body;
+    const {id, name, price, description, img, stock, selectedCategory} = req.body;
     //this is the whole information 
+    if(!img) {
+        img = 'https://i.ibb.co/9yHWqDq/ECO-empty-image-product.png';
+    }
 
     const updateFields = {};
 
@@ -122,12 +137,44 @@ async function updateProduct(req, res) {
     }
 }
 
+async function deleteProduct(req, res) {
+    const productId = parseInt(req.params.id);
+  
+    try {
+      await pool.query('BEGIN'); 
+  
+      await pool.query(`
+        DELETE FROM categories_products
+        WHERE product_id = $1;
+      `, [productId]);
+  
+      const response = await pool.query(`
+        DELETE FROM products
+        WHERE id = $1
+        RETURNING *;
+      `, [productId]);
+  
+      if (response.rowCount === 0) {
+        res.status(404).json({ error: 'Product not found' });
+      } else {
+        await pool.query('COMMIT'); 
+        res.json({ message: 'Product deleted successfully', product: response.rows[0] });
+      }
+    } catch (err) {
+      await pool.query('ROLLBACK'); 
+      console.error('Failed to delete product:', err.message);
+      res.status(500).json({ error: 'Failed to delete product' });
+    }
+  }
+  
+
 module.exports = {
     getProducts,
     getProduct,
     createProduct,
     updateProduct,
-    getProductsByCategoryId
+    getProductsByCategoryId,
+    deleteProduct
 };
 
 
