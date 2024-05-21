@@ -12,21 +12,23 @@ const {checkAuthentication} = require('../controller/user.controller.js')
 router.post('/register', upload.none(), addUser);
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
-    if (err) { 
-      return next(err); // Handle general errors
+    if (err) {
+      return next(err); 
     }
-
+    
+    console.log(info.message)
     if (!user) {
-      return res.status(401).json({ message: 'Authentication failed' }); // Or your preferred error response
+      return res.status(401).json({ message: info.message }); 
     }
 
     // Successful login
     req.logIn(user, (err) => {
-      if (err) { return next(err)}
-      //console.log(req.isAuthenticated())
-      return res.json({ message: 'Login successful', user }); // Or any other success response
-    });   
-  })(req, res, next); 
+      if (err) {
+        return next(err);
+      }
+      return res.json({ message: 'Login successful', user }); 
+    });
+  })(req, res, next);
 });
 
 //send true or false if the user is authenticathed
@@ -44,8 +46,6 @@ router.get('/logout', (req, res) => {
     res.status(200).json({ message: 'Logout successful' }); 
   });
 });
-
-// Middleware to check if user is authenticated
 
 
 module.exports = router;

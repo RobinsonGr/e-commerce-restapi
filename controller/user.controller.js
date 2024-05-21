@@ -47,7 +47,6 @@ const {checkCompleteData,
 //get
 async function getUser(req, res) {
     const isAuth = req.isAuthenticated();
-    console.log( req.isAuthenticated())
     if(!isAuth) {
         return res.status(401).json({error: "User isn't authenticated"})
     }
