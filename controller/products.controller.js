@@ -28,9 +28,7 @@ async function getProducts(req, res) {
 
 async function getProductsByCategoryId(req, res) {
     const categoryId = req.params.categoryId;
-
     try {
-        //PENDING TO MODIFY THE QUERY TO BE ABLE TO RETRIEVE PRODUCTS BY CATEGORY
         const response = await pool.query(`
             SELECT products.*
             FROM products
@@ -72,7 +70,7 @@ async function getProduct(req, res) {
 // Creates a new product
 async function createProduct(req, res) {
     const { name, price, description, img, stock, selectedCategory } = req.body;
-    const imgChecked = !img ? 'https://i.ibb.co/9yHWqDq/ECO-empty-image-product.png' : img
+    const imgChecked = !img ? 'https://i.ibb.co/17Vyyft/VIDA-FOR-EMPTY-IMG-PRODUCTS.png' : img
 
     try {
         await pool.query('BEGIN');
@@ -110,7 +108,6 @@ async function updateProduct(req, res) {
 
     const updateFields = {};
 
-        console.log(req.body)
     if(name) updateFields.name = name;
     if(price) updateFields.price = price;
     if(description) updateFields.description = description;
@@ -129,7 +126,6 @@ async function updateProduct(req, res) {
     try {
         const response = await pool.query(updateQuery, values);
 
-        console.log(response);
         res.json(response.rows);
     } catch (err) {
         console.error('Failed to update product:', err.message);

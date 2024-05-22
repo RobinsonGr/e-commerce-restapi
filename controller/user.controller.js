@@ -8,7 +8,6 @@ const {checkCompleteData,
         if(req.isAuthenticated()) {
           return next()
         }
-        console.log(req.isAuthenticated())
         //console.log(req.isAuthenticated())
         res.status(401).json({ error: 'Unauthorized' });
       };
@@ -16,6 +15,11 @@ const {checkCompleteData,
     async function addUser (req, res){
    try {
    const {email, name, password, address} = req.body
+
+     const existingUser = await pool.query('SELECT * FROM customers WHERE email = $1', [email]);
+    if (existingUser.rows.length > 0) {
+      return res.status(400).json({ message: 'Email already exists' });
+    }
     
     if(!checkCompleteData(req.body)) {
         return res.status(400).json({ message: 'Incomplete data, please fill in all fields' });
@@ -29,6 +33,7 @@ const {checkCompleteData,
         return res.status(400).json({message: 'The email must contain more than 5 characteres'})
     };
 
+  
 
     let hashedPassword = await bcrypt.hash(password, 10)
     
@@ -75,7 +80,6 @@ async function getUser(req, res) {
 //put 
 async function editUser (req, res) {
 
-console.log(req.session.passport.user)
 
      const {name, address} = req.body;
     const userId = req.session.passport.user
@@ -99,7 +103,6 @@ console.log(req.session.passport.user)
         return res.json({message: 'Your profile was updated sucessfully'})
 
     } catch(err) {
-        console.log(err.message)
          res.status(500).json({error: 'We couldn\'t edit the user'})
     };
 };

@@ -3,15 +3,16 @@ const app = express();
 const passport = require('passport');
 const session = require('express-session');
 const cors = require('cors');
-const env = require('dotenv')
+const env = require('dotenv');
 
-env.config()
+env.config();
 
 const authSetup = require('./config/passport');
 authSetup(passport);
 
+// Use the FRONTEND_ORIGIN environment variable for CORS origin
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: process.env.FRONTEND_ORIGIN,
   credentials: true,
 }));
 
@@ -26,23 +27,21 @@ app.use(
       secure: false,
     }
   })
-  );
-  
-  app.use(passport.initialize());
-  app.use(passport.session());
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(express.json());
-// Enables parsing of complex form data as nested objects, arrays using the 'qs' library for flexibility (true).
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use('/products', require('./routes/products'));
 app.use('/categories', require('./routes/categories'));
 app.use('/user', require('./routes/users'));
-app.use('/stripe', require('./routes/stripe'))
+app.use('/stripe', require('./routes/stripe'));
 
-console.log(require('./routes/stripe'))
-        
-app.listen(3000, () => {
-  console.log('listening at port 3000')
-})
-
+// Use the PORT environment variable for server port
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});

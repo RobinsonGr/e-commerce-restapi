@@ -1,13 +1,8 @@
-  
+
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
+[![CircleCI][circleci-image]][circleci-url]
 [![Test Coverage][coveralls-image]][coveralls-url]
-
-[![Dependencies][dependencies-image]][dependencies-url]
-[![DevDependencies][devdependencies-image]][devdependencies-url]
-[![Package Quality][quality-image]][quality-url]
-
 
 ## strict-typed-events
 
@@ -29,12 +24,14 @@ Available under [MIT](LICENSE) license.
 
 [npm-image]: https://img.shields.io/npm/v/strict-typed-events.svg
 [npm-url]: https://npmjs.org/package/strict-typed-events
-[travis-image]: https://img.shields.io/travis/panates/strict-typed-events/master.svg
-[travis-url]: https://travis-ci.org/panates/strict-typed-events
+[circleci-image]: https://circleci.com/gh/panates/strict-typed-events/tree/master.svg?style=shield
+[circleci-url]: https://circleci.com/gh/panates/strict-typed-events/tree/master
 [coveralls-image]: https://img.shields.io/coveralls/panates/strict-typed-events/master.svg
 [coveralls-url]: https://coveralls.io/r/panates/strict-typed-events
 [downloads-image]: https://img.shields.io/npm/dm/strict-typed-events.svg
 [downloads-url]: https://npmjs.org/package/strict-typed-events
+[gitter-image]: https://badges.gitter.im/panates/strict-typed-events.svg
+[gitter-url]: https://gitter.im/panates/strict-typed-events?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
 [dependencies-image]: https://david-dm.org/panates/strict-typed-events/status.svg
 [dependencies-url]:https://david-dm.org/panates/strict-typed-events
 [devdependencies-image]: https://david-dm.org/panates/strict-typed-events/dev-status.svg
