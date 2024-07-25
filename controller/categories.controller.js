@@ -10,7 +10,7 @@ async function getCategories(req, res) {
 
     res.json(response.rows)
   } catch(err) { 
-    console.error('Failed to delete category:', err.message);
+    console.error('Failed retriving the category:', err.message);
     res.status(500).json({ error: 'Failed to delete category'});
   }
 };
