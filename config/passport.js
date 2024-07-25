@@ -28,6 +28,7 @@
         
                     return done(null, user);
                 } catch (err) {
+                    console.error('Error in LocalStrategy:', err);
                     return done(err);
                 }
             }
@@ -53,6 +54,7 @@
                     const user = result.rows[0];
                     return done(null, user);
                 } catch (err) {
+                    console.error('Error in deserializeUser:', err);
                     return done(err);
                 }
             });

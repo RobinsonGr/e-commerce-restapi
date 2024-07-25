@@ -14,17 +14,21 @@ authSetup(passport);
 app.use(cors({
   origin: process.env.FRONTEND_ORIGIN,
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(
   session({
-    secret: '123',
+    secret: process.env.SESSION_SECRET || '123',
     resave: false,
     saveUninitialized: false,
     cookie: {
       httpOnly: false,
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
       maxAge: 3600000,
-      secure: false,
+      secure: true,
+      sameSite: 'none'
     }
   })
 );
